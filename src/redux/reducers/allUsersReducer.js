@@ -7,7 +7,7 @@ const allUsersReducer = (state = init, action) => {
   switch (type) {
     case "ADD_USER":
       const newS = [...state, payload];
-      console.log(newS);
+      console.log("ADD_USER", newS);
       return newS;
 
     case "DELETE_USER":
@@ -17,12 +17,12 @@ const allUsersReducer = (state = init, action) => {
 
     case "ADD_NUMBER":
       const newAddN = [...state, payload];
-      console.log(newAddN);
+      console.log("ADD_NUMBER", newAddN);
       return newAddN;
 
     case "DELETE_NUMBER":
       const newDelN = state.filter((elem) => elem.name !== payload);
-      console.log(newDelN);
+      console.log("DELETE_NUMBER", newDelN);
       return newDelN;  
 
     default:

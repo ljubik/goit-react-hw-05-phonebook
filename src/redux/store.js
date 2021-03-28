@@ -4,7 +4,7 @@ import allUsersReducer from "./reducers/allUsersReducer";
 
 const rootReducer = combineReducers({
   user: userReducer,
-  allUsers: allUsersReducer,
+  contacts: allUsersReducer
 });
 
 const store = createStore(

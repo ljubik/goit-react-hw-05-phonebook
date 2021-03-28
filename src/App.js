@@ -83,27 +83,37 @@ class App extends Component {
     const { addContact, getValue, getList, toDelete } = this;
     return (
       <div className="App">
-        <Main title="Телефонна книжка v.1.2"/>
+        <Main title="Телефонна книжка v.1.3"/>
         <ContactForm addContact={addContact} getValue={getValue} />
         <p className="pApp">Пошук контактів </p>
         <Filter filterContact={getValue} />
         <ContactList contacts={getList()} toDelete={toDelete} />
+        <div>
+          {this.state.contacts.map((el) => {
+            return (
+              <li key={el.id}>
+                {el.name}{" "}{el.tel}{" "}
+                <button onClick={() => toDelete(el.id)}>Видалити</button>
+              </li>
+            );
+          })}
+        </div>
       </div>
     );
   }
 }
 
 const mapStateToProps = (store) => {
-  console.log("store.user", store.user);
-  console.log("store.allUsers", store.allUsers);
+  console.log("store", store);
+
   return {
     user: store.user,
     allUsers: store.allUsers,
   };
 };
 const mapDispatchToProps = {
-  x: addUserAction.addUser,
-  delete: addUserAction.deleteUser,
+  adnum: addUserAction.addNumber,
+  delnum: addUserAction.deleteNumber,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

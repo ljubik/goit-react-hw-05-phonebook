@@ -4,6 +4,10 @@ import PropTypes from "prop-types";
 import { v4 as id } from "uuid";
 import style from "./ContactForm.module.css";
 
+import { connect } from "react-redux";
+import userAction from "../../redux/actions/userAction";
+
+
 class ContactForm extends Component {
   state = {
     name: "",
@@ -26,6 +30,7 @@ class ContactForm extends Component {
     const el = { id: id(), name, tel };
     addContact(el);
     this.setState({ name: "", tel: "" });
+    this.props.z(el);
   };
 
   render() {
@@ -57,9 +62,19 @@ class ContactForm extends Component {
   }
 }
 
-export default ContactForm;
-
 ContactForm.propTypes = {
   getValue: PropTypes.func.isRequired,
   addContact: PropTypes.func.isRequired,
 };
+
+
+const mapStateToProps = () => {
+  
+};
+
+const mapDispatchToProps = {
+  z: userAction.addNumber,
+
+};
+
+export default connect(null, mapDispatchToProps)(ContactForm);
