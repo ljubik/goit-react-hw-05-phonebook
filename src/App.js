@@ -8,22 +8,24 @@ import Filter from "./components/Filter/Filter";
 
 // import routes from "./routes";
 import { connect } from "react-redux";
+import addUserAction from "./redux/actions/userAction";
 
 
 
 class App extends Component {
   state = {
-    contacts: [{id: "1", name: "Любомир", number: "050 187 13 16",  },
-                {id: "2", name: 'Rosie Simpson', number: '459-12-56'},
-                {id: "3", name: 'Hermione Kline', number: '443-89-12'},
-                {id: "4", name: 'Eden Clements', number: '645-17-79'},
-                {id: "5", name: 'Annie Copeland', number: '227-91-26'},],
+    contacts: [{id: "1", name: "Любомир", tel: "050 187 13 16",  },
+                {id: "2", name: 'Rosie Simpson', tel: '459-12-56'},
+                {id: "3", name: 'Hermione Kline', tel: '443-89-12'},
+                {id: "4", name: 'Eden Clements', tel: '645-17-79'},
+                {id: "5", name: 'Annie Copeland', tel: '227-91-26'},],
     name: "",
-    number: "",
+    tel: "",
     filter: "",
   };
   
   addContact = (el) => {
+    console.log(this.state)
     const { contacts } = this.state;
     const twin = contacts.some((c) => c.name === el.name);
     twin
@@ -92,16 +94,16 @@ class App extends Component {
 }
 
 const mapStateToProps = (store) => {
-  // console.log("store.user", store.user);
-  // console.log("store.allUsers", store.allUsers);
-  // return {
-  //   user: store.user,
-  //   allUsers: store.allUsers,
-  // };
+  console.log("store.user", store.user);
+  console.log("store.allUsers", store.allUsers);
+  return {
+    user: store.user,
+    allUsers: store.allUsers,
+  };
 };
 const mapDispatchToProps = {
-  // x: addUserAction.addUser,
-  // delete: addUserAction.deleteUser,
+  x: addUserAction.addUser,
+  delete: addUserAction.deleteUser,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

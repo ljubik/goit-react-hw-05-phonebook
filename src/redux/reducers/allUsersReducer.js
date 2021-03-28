@@ -1,7 +1,5 @@
 const init = [
-  { email: "a@gmail.com", pass: "111111" },
-  { email: "b@gmail.com", pass: "441111" },
-  { email: "c@gmail.com", pass: "115511" },
+  { id: "",  name:"", tel:"" },
 ];
 
 const allUsersReducer = (state = init, action) => {
@@ -16,6 +14,16 @@ const allUsersReducer = (state = init, action) => {
       const newSt = state.filter((elem) => elem.email !== payload);
       console.log(newSt);
       return newSt;
+
+    case "ADD_NUMBER":
+      const newAddN = [...state, payload];
+      console.log(newAddN);
+      return newAddN;
+
+    case "DELETE_NUMBER":
+      const newDelN = state.filter((elem) => elem.name !== payload);
+      console.log(newDelN);
+      return newDelN;  
 
     default:
       return state;

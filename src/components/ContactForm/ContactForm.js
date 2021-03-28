@@ -22,15 +22,15 @@ class ContactForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { addContact } = this.props;
-    const { name, number } = this.state;
-    const el = { name, number, id: id() };
+    const { name, tel } = this.state;
+    const el = { id: id(), name, tel };
     addContact(el);
     this.setState({ name: "", tel: "" });
   };
 
   render() {
     const { handleSubmit } = this;
-    const { name, number } = this.state;
+    const { name, tel } = this.state;
     return (
       <form onSubmit={handleSubmit} className={style.form}>
         <input
@@ -45,10 +45,10 @@ class ContactForm extends Component {
         <input
           onChange={this.handleChange}
           type="number"
-          name="number"
+          name="tel"
           id="tel"
           placeholder="номер телефону"
-          value={number}
+          value={tel}
           required
         />
         <button type="submit">Додати</button>

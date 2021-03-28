@@ -9,7 +9,7 @@ const ContactList = ({ contacts, toDelete }) => {
         <ul className={style.list}>
           {contacts.map((el) => (
             <li key={el.id} >
-            <span>{el.name}</span> : <span>{el.number}</span>
+            <span>{el.name}</span> : <span>{el.tel}</span>
             <span><button className={style.listBtn} onClick={() => toDelete(el.id)}>Видалити</button></span>
             </li>
           ))}

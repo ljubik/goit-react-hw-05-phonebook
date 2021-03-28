@@ -11,4 +11,19 @@ const deleteUser = (email) => {
     payload: email,
   };
 };
-export default { addUser, deleteUser };
+
+const addNumber = (userObject) => {
+  return {
+    type: "ADD_NUMBER",
+    payload: userObject,
+  };
+};
+
+const deleteNumber = (userObject) => {
+  return {
+    type: "DELETE_NUMBER",
+    payload: userObject,
+  };
+};
+
+export default { addUser, deleteUser, addNumber, deleteNumber};
