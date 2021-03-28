@@ -6,6 +6,11 @@ import ContactForm from "./components/ContactForm/ContactForm";
 import ContactList from "./components/ContactList/ContactList";
 import Filter from "./components/Filter/Filter";
 
+// import routes from "./routes";
+import { connect } from "react-redux";
+
+
+
 class App extends Component {
   state = {
     contacts: [{id: "1", name: "Любомир", number: "050 187 13 16",  },
@@ -86,4 +91,17 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (store) => {
+  // console.log("store.user", store.user);
+  // console.log("store.allUsers", store.allUsers);
+  // return {
+  //   user: store.user,
+  //   allUsers: store.allUsers,
+  // };
+};
+const mapDispatchToProps = {
+  // x: addUserAction.addUser,
+  // delete: addUserAction.deleteUser,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
