@@ -9,12 +9,13 @@ import Filter from "./components/Filter/Filter";
 // import routes from "./routes";
 import { connect } from "react-redux";
 import addUserAction from "./redux/actions/userAction";
+import actions from './redux/modal/actions';
 
 
 
 class App extends Component {
   state = {
-    contacts: [{id: "1", name: "Любомир", tel: "050 187 13 16",  },
+    contacts: [ {id: "1", name: 'Любомир', tel: '050 187 13 16'},
                 {id: "2", name: 'Rosie Simpson', tel: '459-12-56'},
                 {id: "3", name: 'Hermione Kline', tel: '443-89-12'},
                 {id: "4", name: 'Eden Clements', tel: '645-17-79'},
@@ -25,7 +26,7 @@ class App extends Component {
   };
   
   addContact = (el) => {
-    console.log(this.state)
+    console.log("add contact state",this.state)
     const { contacts } = this.state;
     const twin = contacts.some((c) => c.name === el.name);
     twin
@@ -78,26 +79,40 @@ class App extends Component {
       localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
     }
   }
+  
+  toggleModal = () => {
+    const { myModal, myChangeModal } = this.props
+    console.log(myModal)
+    return myChangeModal(!myModal)
+  }
 
   render() {
-    const { addContact, getValue, getList, toDelete } = this;
+    const { addContact, getValue, getList, toDelete, toggleModal } = this;
+    const { state, myModal } = this.props
     return (
       <div className="App">
         <Main title="Телефонна книжка v.1.3"/>
         <ContactForm addContact={addContact} getValue={getValue} />
         <p className="pApp">Пошук контактів </p>
         <Filter filterContact={getValue} />
-        <ContactList contacts={getList()} toDelete={toDelete} />
+        {/* <ContactList contacts={getList()} toDelete={toDelete} /> */}
         <div>
           {this.state.contacts.map((el) => {
             return (
               <li key={el.id}>
                 {el.name}{" "}{el.tel}{" "}
-                <button onClick={() => toDelete(el.id)}>Видалити</button>
+                <button onClick={() => toDelete(el.id)}>Видалити localStorage</button>
+                <button
+                  type="button"
+                  onClick={() => this.props.delnum(el.id)}
+                >
+                  del
+                </button>
               </li>
             );
           })}
         </div>
+        <button onClick={toggleModal}>{`click ${myModal}`}</button>
       </div>
     );
   }
@@ -108,12 +123,15 @@ const mapStateToProps = (store) => {
 
   return {
     user: store.user,
-    allUsers: store.allUsers,
+    contacts: store.allUsers,
+    myModal: store.showModal,
   };
 };
+
 const mapDispatchToProps = {
   adnum: addUserAction.addNumber,
   delnum: addUserAction.deleteNumber,
+  myChangeModal: actions.changeShowModal,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

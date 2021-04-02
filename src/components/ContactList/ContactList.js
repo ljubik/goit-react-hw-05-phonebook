@@ -2,6 +2,9 @@ import React from "react";
 import style from "./ContactList.module.css";
 import PropTypes from "prop-types";
 
+import { connect } from "react-redux";
+import userAction from "../../redux/actions/userAction";
+
 const ContactList = ({ contacts, toDelete }) => {
   return (
     <>
@@ -11,6 +14,7 @@ const ContactList = ({ contacts, toDelete }) => {
             <li key={el.id} >
             <span>{el.name}</span> : <span>{el.tel}</span>
             <span><button className={style.listBtn} onClick={() => toDelete(el.id)}>Видалити</button></span>
+            <span><button className={style.listBtn} onClick={() => this.props.store.delnum(el.id)}>Видалити</button></span>
             </li>
           ))}
         </ul>
@@ -18,7 +22,7 @@ const ContactList = ({ contacts, toDelete }) => {
     </>
   );
 };
-export default ContactList;
+// export default ContactList;
 
 ContactList.propTypes = {
   contacts: PropTypes.arrayOf(
@@ -30,3 +34,20 @@ ContactList.propTypes = {
   ),
   toDelete: PropTypes.func.isRequired,
 };
+
+
+const mapStateToProps = (store) => {
+  console.log("store", store);
+
+  return {
+    user: store.user,
+    contacts: store.allUsers,
+  };
+};
+
+const mapDispatchToProps = {
+  // adnum: userAction.addNumber,
+  delnum: userAction.deleteNumber,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContactList);

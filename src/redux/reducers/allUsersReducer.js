@@ -21,10 +21,10 @@ const allUsersReducer = (state = init, action) => {
       return newAddN;
 
     case "DELETE_NUMBER":
-      const newDelN = state.filter((elem) => elem.name !== payload);
+      const newDelN = state.filter((elem) => elem.id !== payload);
       console.log("DELETE_NUMBER", newDelN);
-      return newDelN;  
-
+      return newDelN; 
+  
     default:
       return state;
   }

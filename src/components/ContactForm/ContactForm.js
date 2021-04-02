@@ -29,7 +29,8 @@ class ContactForm extends Component {
     const { name, tel } = this.state;
     const el = { id: id(), name, tel };
     addContact(el);
-    this.setState({ name: "", tel: "" });
+    // this.setState({ name: "", tel: "" });
+    this.setState(el);
     this.props.z(el);
   };
 
@@ -43,7 +44,7 @@ class ContactForm extends Component {
           type="text"
           name="name"
           id="name"
-          placeholder="Імя"
+          placeholder="Ім'я"
           value={name}
           required
         />
@@ -68,13 +69,19 @@ ContactForm.propTypes = {
 };
 
 
-const mapStateToProps = () => {
-  
+const mapStateToProps = (store) => {
+  console.log("store in contact form", store);
+
+  return {
+    user: store.user,
+    contacts: store.allUsers,
+    myModal: store.showModal,
+  };
 };
 
 const mapDispatchToProps = {
   z: userAction.addNumber,
-
+  // create: userAction.createNumber,
 };
 
-export default connect(null, mapDispatchToProps)(ContactForm);
+export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);
