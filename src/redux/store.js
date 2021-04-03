@@ -1,9 +1,9 @@
 import { createStore, combineReducers } from "redux";
 import userReducer from "../redux/reducers/userReducers";
 import allUsersReducer from "./reducers/allUsersReducer";
-// импортируем функцию создания стора
+// import function create store
 import { configureStore } from '@reduxjs/toolkit'
-// экспортируем стор
+// export store
 import reducers from './modal/reducers'
 
 const rootReducer = combineReducers({
@@ -12,17 +12,16 @@ const rootReducer = combineReducers({
   showModal: reducers.modalReducer,
 }, localStorage.contacts);
 
+const persistedState = localStorage.getItem('reduxState')
+  ? JSON.parse(localStorage.getItem('reduxState'))
+  : {}
 const store = createStore(
   rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  persistedState //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
-// const store = configureStore({
-//   reducer: {
-//     query: reducers.cocktailReducer,
-//     cocktailsData: reducers.allCocktailsReducer,
-//     showModal: reducers.modalReducer,
-//   },
-// })
+store.subscribe(()=>{
+  localStorage.setItem('reduxState', JSON.stringify(store.getState()))
+})
 
 export default store;

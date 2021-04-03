@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import userAction from "../../redux/actions/userAction";
 
-const ContactList = ({ contacts, toDelete }) => {
+const ContactList = ({ contacts, delnum }) => {
   return (
     <>
       {contacts && (
@@ -13,8 +13,8 @@ const ContactList = ({ contacts, toDelete }) => {
           {contacts.map((el) => (
             <li key={el.id} >
             <span>{el.name}</span> : <span>{el.tel}</span>
-            <span><button className={style.listBtn} onClick={() => toDelete(el.id)}>Видалити</button></span>
-            <span><button className={style.listBtn} onClick={() => this.props.store.delnum(el.id)}>Видалити</button></span>
+            {/* <span><button className={style.listBtn} onClick={() => toDelete(el.id)}>Видалити</button></span> */}
+            <span><button className={style.listBtn} onClick={() => delnum(el.id)}>Видалити</button></span>
             </li>
           ))}
         </ul>
@@ -32,7 +32,7 @@ ContactList.propTypes = {
       tel: PropTypes.string.isRequired,
     })
   ),
-  toDelete: PropTypes.func.isRequired,
+
 };
 
 
@@ -40,8 +40,7 @@ const mapStateToProps = (store) => {
   console.log("store", store);
 
   return {
-    user: store.user,
-    contacts: store.allUsers,
+    contacts: store.contacts,
   };
 };
 

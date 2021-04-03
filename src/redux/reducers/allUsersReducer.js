@@ -1,6 +1,9 @@
-const init = [
-  { id: "",  name:"", tel:"" },
-];
+const init = [];
+// const temp = [   {id: "1", name: 'Любомир', tel: '050 187 13 16'},
+//   {id: "2", name: 'Rosie Simpson', tel: '459-12-56'},
+//   {id: "3", name: 'Hermione Kline', tel: '443-89-12'},
+//   {id: "4", name: 'Eden Clements', tel: '645-17-79'},
+//   {id: "5", name: 'Annie Copeland', tel: '227-91-26'}]
 
 const allUsersReducer = (state = init, action) => {
   const { type, payload } = action;

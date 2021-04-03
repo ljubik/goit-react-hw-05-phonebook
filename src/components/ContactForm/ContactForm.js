@@ -25,13 +25,13 @@ class ContactForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { addContact } = this.props;
+    // const { addContact } = this.props;
     const { name, tel } = this.state;
     const el = { id: id(), name, tel };
-    addContact(el);
+    // addContact(el);
     // this.setState({ name: "", tel: "" });
     this.setState(el);
-    this.props.z(el);
+    this.props.addNumber(el);
   };
 
   render() {
@@ -65,7 +65,7 @@ class ContactForm extends Component {
 
 ContactForm.propTypes = {
   getValue: PropTypes.func.isRequired,
-  addContact: PropTypes.func.isRequired,
+  // addContact: PropTypes.func.isRequired,
 };
 
 
@@ -73,14 +73,12 @@ const mapStateToProps = (store) => {
   console.log("store in contact form", store);
 
   return {
-    user: store.user,
-    contacts: store.allUsers,
-    myModal: store.showModal,
+    contacts: store.contacts,
   };
 };
 
 const mapDispatchToProps = {
-  z: userAction.addNumber,
+  addNumber: userAction.addNumber,
   // create: userAction.createNumber,
 };
 

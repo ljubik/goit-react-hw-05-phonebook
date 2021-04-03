@@ -92,11 +92,11 @@ class App extends Component {
     return (
       <div className="App">
         <Main title="Телефонна книжка v.1.3"/>
-        <ContactForm addContact={addContact} getValue={getValue} />
+        <ContactForm  getValue={getValue} />
         <p className="pApp">Пошук контактів </p>
         <Filter filterContact={getValue} />
-        {/* <ContactList contacts={getList()} toDelete={toDelete} /> */}
-        <div>
+        <ContactList contacts={getList()} />
+        {/* <div>
           {this.state.contacts.map((el) => {
             return (
               <li key={el.id}>
@@ -111,8 +111,8 @@ class App extends Component {
               </li>
             );
           })}
-        </div>
-        <button onClick={toggleModal}>{`click ${myModal}`}</button>
+        </div> */}
+        {/* <button onClick={toggleModal}>{`click ${myModal}`}</button> */}
       </div>
     );
   }
@@ -122,9 +122,7 @@ const mapStateToProps = (store) => {
   console.log("store", store);
 
   return {
-    user: store.user,
-    contacts: store.allUsers,
-    myModal: store.showModal,
+    contacts: store.contacts,
   };
 };
 
