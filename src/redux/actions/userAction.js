@@ -35,8 +35,16 @@ const createNumber = (numObject) => {
 
 const filterName = (nameObject) => {
   return {
-    type: "FILTER_NAME",
+    type: "SET_FILTER",
     payload: nameObject,
   };
 };
+
+// const filterName = (nameObject) => {
+//   return {
+//     type: "SET_FILTER",
+//     payload: nameObject,
+//   };
+// };
+
 export default { addUser, deleteUser, addNumber, deleteNumber, createNumber, filterName};

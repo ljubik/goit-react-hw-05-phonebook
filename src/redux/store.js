@@ -1,13 +1,14 @@
 import { createStore, combineReducers } from "redux";
 import userReducer from "../redux/reducers/userReducers";
 import allUsersReducer from "./reducers/allUsersReducer";
+import filterReducer from "./reducers/filterReducer";
 // import function create store
 import { configureStore } from '@reduxjs/toolkit'
 // export store
 import reducers from './modal/reducers'
 
 const rootReducer = combineReducers({
-  filter: allUsersReducer,
+  filter: filterReducer,
   contacts: allUsersReducer,
   user: userReducer,
   showModal: reducers.modalReducer,

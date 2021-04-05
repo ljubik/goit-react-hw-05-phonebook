@@ -11,7 +11,7 @@ class Filter extends Component {
   };
 
   handleChange = (e) => {
-    const { filterContact, filterName } = this.props;
+    const { filterContact, filterName} = this.props;
     this.setState({ [e.target.name]: e.target.value });
     // filterContact(e.target);
     filterName(e.target.value);
@@ -19,7 +19,7 @@ class Filter extends Component {
 
   render() {
     const { handleChange } = this;
-
+    const { filter} = this.props;
     return (
       <input
         className={style.filter}
@@ -27,6 +27,7 @@ class Filter extends Component {
         type="text"
         name="filter"
         placeholder="Введіть імя"
+        defaultValue={filter}
       />
     );
   }
@@ -37,7 +38,7 @@ const mapStateToProps = (store) => {
 
   return {
     contacts: store.contacts,
-    filter: store.filterName,
+    filter: store.filter,
   };
 };
 

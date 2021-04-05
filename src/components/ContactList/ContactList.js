@@ -11,9 +11,19 @@ const ContactList = ({ contacts, delnum, filter, filteredContacts }) => {
   return (
     <>
     
-      {filter.length === 0 ? (
+      {contacts.length > 0 ? (
         <ul className={style.list}>
-          {contacts.map((el) => (
+          {contacts.filter(element => {
+            console.log("----------------",element)
+
+            if (!filter) {
+              console.log("+++++++++++",filter)
+              return true
+            }
+            console.log("==========",filter)
+            return element.name.toLowerCase().includes(filter);
+
+          }).map((el) => (
             <li key={el.id} >
             <span>{el.name}</span> : <span>{el.tel}</span>
             {/* <span><button className={style.listBtn} onClick={() => toDelete(el.id)}>Видалити</button></span> */}
@@ -21,14 +31,7 @@ const ContactList = ({ contacts, delnum, filter, filteredContacts }) => {
             </li>
           ))}
         </ul>
-      ): <ul className={style.list}>
-          {filter.map((el) => (
-            <li key={el.id} >
-            <span>{el.name}</span> : <span>{el.tel}</span>
-            <span><button className={style.listBtn} onClick={() => delnum(el.id)}>Видалити</button></span>
-            </li>
-          ))}
-        </ul>}
+      ): "empty"}
     </>
   );
 };
@@ -51,12 +54,12 @@ const mapStateToProps = (store) => {
 
   return {
     contacts: store.contacts,
-    filter: store.filterName,
+    filter: store.filter,
   };
 };
 
 const mapDispatchToProps = {
-  filter: userAction.filterName,
+  // filter: userAction.filterName,
   delnum: userAction.deleteNumber,
 };
 
