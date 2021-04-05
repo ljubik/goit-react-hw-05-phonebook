@@ -82,7 +82,7 @@ class App extends Component {
 
   render() {
     const { addContact, getValue, getList, toDelete, toggleModal } = this;
-    // const { state, myModal } = this.props
+    const { state, myModal } = this.props
     return (
       <div className="App">
         <Main title="Телефонна книжка v.1.3"/>
@@ -101,6 +101,7 @@ const mapStateToProps = (store) => {
 
   return {
     contacts: store.contacts,
+    filter : store.filteredContacts,
   };
 };
 

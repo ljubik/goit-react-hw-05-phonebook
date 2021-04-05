@@ -14,7 +14,7 @@ class Filter extends Component {
     const { filterContact, filterName } = this.props;
     this.setState({ [e.target.name]: e.target.value });
     // filterContact(e.target);
-    filterName(e.target);
+    filterName(e.target.value);
   };
 
   render() {
@@ -37,6 +37,7 @@ const mapStateToProps = (store) => {
 
   return {
     contacts: store.contacts,
+    filter: store.filterName,
   };
 };
 

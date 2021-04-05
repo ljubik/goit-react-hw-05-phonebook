@@ -5,10 +5,13 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import userAction from "../../redux/actions/userAction";
 
-const ContactList = ({ contacts, delnum, filter }) => {
+const ContactList = ({ contacts, delnum, filter, filteredContacts }) => {
+  console.log("contacts", contacts);
+  console.log("filter", filter);
   return (
     <>
-      {contacts && filter ? (
+    
+      {filter.length === 0 ? (
         <ul className={style.list}>
           {contacts.map((el) => (
             <li key={el.id} >
@@ -18,11 +21,18 @@ const ContactList = ({ contacts, delnum, filter }) => {
             </li>
           ))}
         </ul>
-      ): "Empty "}
+      ): <ul className={style.list}>
+          {filter.map((el) => (
+            <li key={el.id} >
+            <span>{el.name}</span> : <span>{el.tel}</span>
+            <span><button className={style.listBtn} onClick={() => delnum(el.id)}>Видалити</button></span>
+            </li>
+          ))}
+        </ul>}
     </>
   );
 };
-// export default ContactList;
+
 
 ContactList.propTypes = {
   contacts: PropTypes.arrayOf(
@@ -37,10 +47,11 @@ ContactList.propTypes = {
 
 
 const mapStateToProps = (store) => {
-  // console.log("store", store);
+  console.log("store contact list", store);
 
   return {
     contacts: store.contacts,
+    filter: store.filterName,
   };
 };
 

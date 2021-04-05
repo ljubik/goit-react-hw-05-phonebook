@@ -29,13 +29,14 @@ const allUsersReducer = (state = init, action) => {
       return newDelN; 
 
     case "FILTER_NAME":
-      // const newFilter = state.filter((elem) => elem.name !== payload);
+      console.log("FILTER_NAME before", state); 
       const newFilter = state.filter((elem) => {
-        return elem.name.toLowerCase().includes(elem);
+        return elem.name.toLowerCase().includes(payload);
       });
-      console.log("FILTER_NAME", newFilter); 
-      // if (newFilter) return newFilter;
-      return newFilter; 
+      console.log("FILTER_NAME after", state);
+
+      // if (newFilter !== state) return newFilter; 
+      return newFilter;
   
     default:
       return state;

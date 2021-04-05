@@ -7,8 +7,9 @@ import { configureStore } from '@reduxjs/toolkit'
 import reducers from './modal/reducers'
 
 const rootReducer = combineReducers({
-  user: userReducer,
+  filter: allUsersReducer,
   contacts: allUsersReducer,
+  user: userReducer,
   showModal: reducers.modalReducer,
 }, localStorage.contacts);
 
