@@ -14,24 +14,20 @@ const ContactList = ({ contacts, delnum, filter, filteredContacts }) => {
       {contacts.length > 0 ? (
         <ul className={style.list}>
           {contacts.filter(element => {
-            console.log("----------------",element)
-
             if (!filter) {
-              console.log("+++++++++++",filter)
               return true
             }
-            console.log("==========",filter)
             return element.name.toLowerCase().includes(filter);
-
           }).map((el) => (
             <li key={el.id} >
             <span>{el.name}</span> : <span>{el.tel}</span>
-            {/* <span><button className={style.listBtn} onClick={() => toDelete(el.id)}>Видалити</button></span> */}
             <span><button className={style.listBtn} onClick={() => delnum(el.id)}>Видалити</button></span>
             </li>
           ))}
         </ul>
-      ): "empty"}
+      ): <ul className={style.list}>
+          <li>У вас порожній список !</li>
+        </ul>}
     </>
   );
 };
@@ -50,7 +46,7 @@ ContactList.propTypes = {
 
 
 const mapStateToProps = (store) => {
-  console.log("store contact list", store);
+  // console.log("store contact list", store);
 
   return {
     contacts: store.contacts,
@@ -59,7 +55,6 @@ const mapStateToProps = (store) => {
 };
 
 const mapDispatchToProps = {
-  // filter: userAction.filterName,
   delnum: userAction.deleteNumber,
 };
 

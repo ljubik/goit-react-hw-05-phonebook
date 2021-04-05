@@ -11,9 +11,8 @@ class Filter extends Component {
   };
 
   handleChange = (e) => {
-    const { filterContact, filterName} = this.props;
+    const { filterName} = this.props;
     this.setState({ [e.target.name]: e.target.value });
-    // filterContact(e.target);
     filterName(e.target.value);
   };
 
@@ -21,6 +20,8 @@ class Filter extends Component {
     const { handleChange } = this;
     const { filter} = this.props;
     return (
+      <>
+      <div className={style.filter}>Ваш останній запит {filter} </div> 
       <input
         className={style.filter}
         onInput={handleChange}
@@ -29,6 +30,7 @@ class Filter extends Component {
         placeholder="Введіть імя"
         defaultValue={filter}
       />
+      </>
     );
   }
 }

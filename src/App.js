@@ -9,6 +9,7 @@ import Filter from "./components/Filter/Filter";
 // import routes from "./routes";
 import { connect } from "react-redux";
 import addUserAction from "./redux/actions/userAction";
+import filterAction from "./redux/actions/filterAction";
 import actions from './redux/modal/actions';
 
 
@@ -74,6 +75,10 @@ class App extends Component {
     }
   }
   
+  componentWillUnmount(){
+
+  }
+
   toggleModal = () => {
     const { myModal, myChangeModal } = this.props
     console.log(myModal)
@@ -87,7 +92,7 @@ class App extends Component {
       <div className="App">
         <Main title="Телефонна книжка v.1.3"/>
         <ContactForm  getValue={getValue} />
-        <p className="pApp">Пошук контактів </p>
+        <h2 className="pApp">Пошук контактів </h2>
         <Filter filterContact={getValue} />
         <ContactList contacts={getList()} />
         {/* <button onClick={toggleModal}>{`click ${myModal}`}</button> */}
@@ -108,7 +113,7 @@ const mapStateToProps = (store) => {
 const mapDispatchToProps = {
   adnum: addUserAction.addNumber,
   delnum: addUserAction.deleteNumber,
-  filter: addUserAction.filterName,
+  filter: filterAction.filter,
   myChangeModal: actions.changeShowModal,
 };
 
