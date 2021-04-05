@@ -33,4 +33,10 @@ const createNumber = (numObject) => {
   };
 };
 
-export default { addUser, deleteUser, addNumber, deleteNumber, createNumber};
+const filterName = (nameObject) => {
+  return {
+    type: "FILTER_NAME",
+    payload: nameObject,
+  };
+};
+export default { addUser, deleteUser, addNumber, deleteNumber, createNumber, filterName};

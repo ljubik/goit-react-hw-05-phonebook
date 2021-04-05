@@ -15,13 +15,7 @@ import actions from './redux/modal/actions';
 
 class App extends Component {
   state = {
-    contacts: [ {id: "1", name: 'Любомир', tel: '050 187 13 16'},
-                {id: "2", name: 'Rosie Simpson', tel: '459-12-56'},
-                {id: "3", name: 'Hermione Kline', tel: '443-89-12'},
-                {id: "4", name: 'Eden Clements', tel: '645-17-79'},
-                {id: "5", name: 'Annie Copeland', tel: '227-91-26'},],
-    name: "",
-    tel: "",
+    contacts: [],
     filter: "",
   };
   
@@ -43,7 +37,7 @@ class App extends Component {
   };
 
   toGetFilteredContacts = () => {
-    const { contacts, filter } = this.state;
+    const { contacts, filter } = this.props;
     const filteredContacts = contacts.filter((el) => {
       return el.name.toLowerCase().includes(filter);
     });
@@ -88,7 +82,7 @@ class App extends Component {
 
   render() {
     const { addContact, getValue, getList, toDelete, toggleModal } = this;
-    const { state, myModal } = this.props
+    // const { state, myModal } = this.props
     return (
       <div className="App">
         <Main title="Телефонна книжка v.1.3"/>
@@ -96,22 +90,6 @@ class App extends Component {
         <p className="pApp">Пошук контактів </p>
         <Filter filterContact={getValue} />
         <ContactList contacts={getList()} />
-        {/* <div>
-          {this.state.contacts.map((el) => {
-            return (
-              <li key={el.id}>
-                {el.name}{" "}{el.tel}{" "}
-                <button onClick={() => toDelete(el.id)}>Видалити localStorage</button>
-                <button
-                  type="button"
-                  onClick={() => this.props.delnum(el.id)}
-                >
-                  del
-                </button>
-              </li>
-            );
-          })}
-        </div> */}
         {/* <button onClick={toggleModal}>{`click ${myModal}`}</button> */}
       </div>
     );
@@ -119,7 +97,7 @@ class App extends Component {
 }
 
 const mapStateToProps = (store) => {
-  console.log("store", store);
+  // console.log("store", store);
 
   return {
     contacts: store.contacts,
@@ -129,6 +107,7 @@ const mapStateToProps = (store) => {
 const mapDispatchToProps = {
   adnum: addUserAction.addNumber,
   delnum: addUserAction.deleteNumber,
+  filter: addUserAction.filterName,
   myChangeModal: actions.changeShowModal,
 };
 

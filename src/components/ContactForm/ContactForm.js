@@ -70,7 +70,7 @@ ContactForm.propTypes = {
 
 
 const mapStateToProps = (store) => {
-  console.log("store in contact form", store);
+  // console.log("store in contact form", store);
 
   return {
     contacts: store.contacts,

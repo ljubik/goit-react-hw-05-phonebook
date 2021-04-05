@@ -5,10 +5,10 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import userAction from "../../redux/actions/userAction";
 
-const ContactList = ({ contacts, delnum }) => {
+const ContactList = ({ contacts, delnum, filter }) => {
   return (
     <>
-      {contacts && (
+      {contacts && filter ? (
         <ul className={style.list}>
           {contacts.map((el) => (
             <li key={el.id} >
@@ -18,7 +18,7 @@ const ContactList = ({ contacts, delnum }) => {
             </li>
           ))}
         </ul>
-      )}
+      ): "Empty "}
     </>
   );
 };
@@ -37,7 +37,7 @@ ContactList.propTypes = {
 
 
 const mapStateToProps = (store) => {
-  console.log("store", store);
+  // console.log("store", store);
 
   return {
     contacts: store.contacts,
@@ -45,7 +45,7 @@ const mapStateToProps = (store) => {
 };
 
 const mapDispatchToProps = {
-  // adnum: userAction.addNumber,
+  filter: userAction.filterName,
   delnum: userAction.deleteNumber,
 };
 

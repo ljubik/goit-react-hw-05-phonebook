@@ -11,9 +11,10 @@ class Filter extends Component {
   };
 
   handleChange = (e) => {
-    const { filterContact } = this.props;
+    const { filterContact, filterName } = this.props;
     this.setState({ [e.target.name]: e.target.value });
-    filterContact(e.target);
+    // filterContact(e.target);
+    filterName(e.target);
   };
 
   render() {
@@ -32,7 +33,7 @@ class Filter extends Component {
 }
 
 const mapStateToProps = (store) => {
-  console.log("store", store);
+  // console.log("store filter", store);
 
   return {
     contacts: store.contacts,
@@ -40,12 +41,13 @@ const mapStateToProps = (store) => {
 };
 
 const mapDispatchToProps = {
-  // adnum: userAction.addNumber,
-  delnum: userAction.deleteNumber,
+  filterName: userAction.filterName,
+  // delnum: userAction.deleteNumber,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);
 
 Filter.propTypes = {
-  filterContact: PropTypes.func.isRequired,
+  // filterContact: PropTypes.func.isRequired,
 };
+
