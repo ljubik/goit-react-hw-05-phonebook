@@ -6,8 +6,8 @@ import { connect } from "react-redux";
 import userAction from "../../redux/actions/userAction";
 
 const ContactList = ({ contacts, delnum, filter, filteredContacts }) => {
-  console.log("contacts", contacts);
-  console.log("filter", filter);
+  // console.log("contacts", contacts);
+  // console.log("filter", filter);
   return (
     <>
     
@@ -19,14 +19,14 @@ const ContactList = ({ contacts, delnum, filter, filteredContacts }) => {
             }
             return element.name.toLowerCase().includes(filter);
           }).map((el) => (
-            <li key={el.id} >
+            <li className={style.listLi} key={el.id} >
             <span>{el.name}</span> : <span>{el.tel}</span>
             <span><button className={style.listBtn} onClick={() => delnum(el.id)}>Видалити</button></span>
             </li>
           ))}
         </ul>
       ): <ul className={style.list}>
-          <li>У вас порожній список !</li>
+          <li className={style.listLi} >У вас порожній список !</li>
         </ul>}
     </>
   );
