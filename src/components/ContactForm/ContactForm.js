@@ -25,14 +25,20 @@ class ContactForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    // const { addContact } = this.props;
     const { name, tel } = this.state;
     const el = { id: id(), name, tel };
-    // addContact(el);
-    // this.setState({ name: "", tel: "" });
+    const form = e.target;
     this.setState(el);
     this.props.addNumber(el);
+    this.formReset();
   };
+
+  formReset = () => { 
+    this.setState({
+      name: "",
+      tel: "",
+    });
+  }
 
   render() {
     const { handleSubmit } = this;
@@ -46,6 +52,7 @@ class ContactForm extends Component {
           id="name"
           placeholder="Ім'я"
           value={name}
+          // defaultValue=""
           required
         />
         <input
@@ -55,6 +62,7 @@ class ContactForm extends Component {
           id="tel"
           placeholder="номер телефону"
           value={tel}
+          // defaultValue=""
           required
         />
         <button type="submit">Додати</button>
