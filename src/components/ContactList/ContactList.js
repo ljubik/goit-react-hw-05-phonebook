@@ -20,7 +20,7 @@ const ContactList = ({ contacts, delnum, filter, filteredContacts }) => {
             return element.name.toLowerCase().includes(filter);
           }).map((el) => (
             <li className={style.listLi} key={el.id} >
-            <span>{el.name}</span> : <span>{el.tel}</span>
+            <span>{el.name}:</span><span>{el.tel}</span>
             <span><button className={style.listBtn} onClick={() => delnum(el.id)}>Видалити</button></span>
             </li>
           ))}

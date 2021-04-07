@@ -24,12 +24,15 @@ class ContactForm extends Component {
   };
 
   handleSubmit = (e) => {
+    const { contacts} = this.props;
     e.preventDefault();
     const { name, tel } = this.state;
     const el = { id: id(), name, tel };
-    const form = e.target;
-    this.setState(el);
-    this.props.addNumber(el);
+
+    if (!contacts.some((c) => c.name === el.name)){
+    this.props.addNumber(el);}
+    else {alert(`Увага дане імя уже використовується!` )}
+
     this.formReset();
   };
 
@@ -42,7 +45,7 @@ class ContactForm extends Component {
 
   render() {
     const { handleSubmit } = this;
-    const { name, tel } = this.state;
+    const { name, tel} = this.state;
     return (
       <form onSubmit={handleSubmit} className={style.form}>
         <input
@@ -52,7 +55,6 @@ class ContactForm extends Component {
           id="name"
           placeholder="Ім'я"
           value={name}
-          // defaultValue=""
           required
         />
         <input
@@ -62,10 +64,10 @@ class ContactForm extends Component {
           id="tel"
           placeholder="номер телефону"
           value={tel}
-          // defaultValue=""
+
           required
         />
-        <button type="submit">Додати</button>
+        <button type="submit" >Додати</button>
       </form>
     );
   }

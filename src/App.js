@@ -21,14 +21,14 @@ class App extends Component {
   };
   
   addContact = (el) => {
-    console.log("add contact state",this.state)
-    const { contacts } = this.state;
+    console.log("add contact check",this.props)
+    const { contacts } = this.props;
     const twin = contacts.some((c) => c.name === el.name);
     twin
-      ? alert(`Увага дане імя уже використовується!`)
+      ? alert(`Увага дане імя уже використовується!` )
       : this.setState((prev) => {
           return {
-            contacts: [...prev.contacts, el],
+            // contacts: [...prev.contacts, el],
           };
         });
   };
